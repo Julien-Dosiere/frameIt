@@ -31,7 +31,9 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/assets/fontawesome/css/all.css",
+              "node_modules/bulma/css/bulma.min.css"
             ],
             "scripts": []
           },
