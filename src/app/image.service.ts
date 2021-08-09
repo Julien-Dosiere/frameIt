@@ -1,5 +1,13 @@
 import { Injectable } from '@angular/core';
 import {Subject} from "rxjs";
+import { PaletteService } from './palette/palette.service';
+
+
+
+
+
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -10,11 +18,13 @@ export class ImageService {
 
 
 
-  constructor() { }
+
+  constructor(private paletteService: PaletteService) { }
 
   setImage (file: File) {
     this.imageFile = file;
     console.log(`filename: ${this.imageFile.name}`)
+
     this.getImage()
   }
 
@@ -26,16 +36,17 @@ export class ImageService {
       reader.readAsDataURL(this.imageFile);
 
       reader.onload = () => {
-        console.log(reader.result);
-
         if (typeof reader.result === 'string'){
           this.imageChanged.next(reader.result);
+          this.paletteService.setPalette(reader.result);
         }
 
       }
-
     }
 
-
   }
+
+
+
+
 }

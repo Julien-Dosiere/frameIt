@@ -1,0 +1,47 @@
+<div *ngIf="palette">
+  <div
+    class="color"
+    style="background-color: {{palette.vibrant}};"
+    (click)="selectColor(palette.vibrant)"
+  >
+  </div>
+
+
+  <div
+    class="color"
+    style="background-color: {{palette.dark}};"
+    (click)="selectColor(palette.dark)"
+  >
+
+  </div>
+  <div
+    class="color"
+    style="background-color: {{palette.light}};"
+    (click)="selectColor(palette.light)"
+  >
+  </div>
+
+  <div
+    class="color"
+    style="background-color: {{palette.black}};"
+    (click)="selectColor(palette.black)"
+  >
+
+
+  </div>
+
+  <div
+    class="color"
+    style="background-color: {{palette.custom}};"
+    (click)="selectColor(palette.custom)"
+  >
+    <input type="color" id="head" name="head"
+           style=""
+           value="{{palette.custom}}"
+           (change)="pickColor($event)"
+
+    >
+
+  </div>
+</div>
+

@@ -1,0 +1,16 @@
+.color {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  border: 3px solid #999;
+  transition: 0.3s;
+
+
+
+  &:hover {
+    border-color: #ff7722
+  }
+
+}
+
+
