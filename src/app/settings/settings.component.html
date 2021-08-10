@@ -1,11 +1,18 @@
 <h5 class="title">
+  Width:
+</h5>
+<label for="width">
+<input type="number" id="width" value="{{settings.width}}" (change)="setWidth($event)">
+  cm
+</label>
+<h5 class="title">
   Frame width:
 </h5>
 <div>
   <button class="button" (click)="setFraming('-')">
     -
   </button>
-  {{framing}}
+  {{settings.framing}}
 
   <button class="button" (click)="setFraming('+')">
     +
@@ -20,7 +27,7 @@
   <button class="button" (click)="setMatting('-')">
     -
   </button>
-  {{matting}}
+  {{settings.matting}}
 
   <button class="button" (click)="setMatting('+')">
     +

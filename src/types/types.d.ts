@@ -8,7 +8,12 @@ declare module 'node-vibrant/dist/vibrant.js';
 
 type Color = [number, number, number]
 
-
+interface Settings{
+  framing: number;
+  matting: number;
+  width: number;
+  scale: number;
+}
 
 // interface CustomPalette {
 //   vibrant: Color;

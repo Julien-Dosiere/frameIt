@@ -1,21 +1,24 @@
 import { Injectable } from '@angular/core';
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
 })
 export class SettingsService {
-  framingChanged = new Subject<number>();
-  mattingChanged = new Subject<number>();
+
+  settings: Settings = {
+    framing: 5,
+    matting: 1,
+    width: 200,
+    scale: 200,
+  }
+  settingsChanged = new BehaviorSubject<Settings>(this.settings);
 
 
   constructor() { }
 
-  setFraming(value: number) {
-    this.framingChanged.next(value)
-  }
 
-  setMatting(value: number) {
-    this.mattingChanged.next(value)
+
+  setSettings(settings: Settings) {
   }
 }

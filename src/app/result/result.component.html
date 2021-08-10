@@ -1,13 +1,21 @@
-<div class="frame"
-     style="
+<div class="room"
+     style="background-image: url(assets/img/500-scaled.png)" (click)="onResize($event)" #room>
+  <div class="nail">
+    <div
+      class="frame"
+      style="
      border-color: {{color}};
-     border-width: {{framing}}px;
-">
-  <div class="matting" style="border-width: {{matting}}px;">
+     border-width: {{rawSettings.framing}}px;
 
-    <figure class="image" >
-      <img [src]=imageSource >
-    </figure>
-  </div>
 
+
+"
+    >
+          <div class="matting" style="border-width: {{rawSettings.matting}}px;">
+
+        <img [src]=imageSource class="picture" style="width: {{rawSettings.width}}px;">
+    </div>
+
+      </div>
+    </div>
 </div>

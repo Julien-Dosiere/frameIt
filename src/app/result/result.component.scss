@@ -1,9 +1,51 @@
+.nail{
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+
+  //width: 10.04%;
+
+
+
+}
 
 .frame{
-  border: 10px solid;
+  border: 3em solid;
+  //width: 30%;
+  position: relative;
+  left: -50%;
+  //padding: 40%
+
+
+
+
+
 }
 
 .matting{
   border: 0px solid white;
+  background-color: white;
+
+}
+
+.room {
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: contain;
+  width: 100%;
+  height: 0;
+  max-height: 20rem;
+  padding-top: 62.9%;
+  border: 2px solid grey;
+  position: relative;
+
+}
+
+.picture{
+  display: block;
+  //width: 100px;
+  height: auto;
 
 }

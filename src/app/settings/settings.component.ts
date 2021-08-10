@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import { SettingsService } from './settings.service';
 import {Subscription} from "rxjs";
 
@@ -7,19 +7,18 @@ import {Subscription} from "rxjs";
   templateUrl: './settings.component.html',
   styleUrls: ['./settings.component.scss']
 })
-export class SettingsComponent implements OnInit {
-  framing = 5;
-  matting = 1;
+export class SettingsComponent implements OnInit, OnDestroy {
+  settings: Settings;
 
-  framingSub?: Subscription;
-  MattingSub?: Subscription;
+  settingsSub?: Subscription;
 
 
-  constructor(private settingsService: SettingsService) { }
+  constructor(private settingsService: SettingsService) {
+    this.settings = settingsService.settingsChanged.getValue();
+  }
 
   ngOnInit(): void {
-    this.framingSub = this.settingsService.framingChanged.subscribe(framing => this.framing = framing)
-    this.MattingSub = this.settingsService.mattingChanged.subscribe(matting => this.matting = matting)
+    this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => this.settings = settings);
 
 
   }
@@ -27,16 +26,31 @@ export class SettingsComponent implements OnInit {
 
   setFraming(type: string): void {
     if (type === '+')
-      this.settingsService.setFraming(++this.framing);
+      ++this.settings.framing
     else
-      this.settingsService.setFraming(--this.framing);
+      --this.settings.framing
+    this.settingsService.setSettings(this.settings);
   }
 
   setMatting(type: string): void {
     if (type === '+')
-      this.settingsService.setMatting(++this.matting);
+      ++this.settings.matting
     else
-      this.settingsService.setMatting(--this.matting);
+      --this.settings.matting
+    this.settingsService.setSettings(this.settings);
+  }
+
+  setWidth(event: Event): void {
+    const input = (<HTMLInputElement>event.target).value;
+    this.settings.width = parseInt(input);
+    this.settingsService.setSettings(this.settings);
+
+
+  }
+
+
+  ngOnDestroy() {
+    this.settingsSub!.unsubscribe();
   }
 
 }
