@@ -16,6 +16,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   paletteSub?: Subscription;
   settingsSub?: Subscription;
   rawSettings: Settings;
+  convertedSettings!: Settings;
   @ViewChild('room', { static: true}) room?: ElementRef;
 
   constructor(
@@ -24,18 +25,22 @@ export class ResultComponent implements OnInit, OnDestroy {
     private settingsService:SettingsService,
     ) {
     this.rawSettings = settingsService.settingsChanged.getValue();
+    this.convertSettings();
   }
 
   ngOnInit(): void {
     this.imgChangeSub = this.imageService.imageChanged.subscribe((newSource: string) => this.imageSource = newSource);
     this.paletteSub = this.paletteService.colorChanged.subscribe(color => this.color = color);
     this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => {
+      this.rawSettings = settings;
+      this.convertSettings();
 
     });
 
+    this.setScale();
+
     this.paletteService.setPalette(this.imageSource);
-    this.rawSettings.scale = this.room?.nativeElement.offsetWidth;
-    this.settingsService.setSettings(this.rawSettings);
+
 
 
   }
@@ -44,9 +49,28 @@ export class ResultComponent implements OnInit, OnDestroy {
     this.settingsSub!.unsubscribe();
   }
 
-  onResize(event: Event) {
-    console.log(this.room?.nativeElement.offsetWidth);
 
+  setScale() {
+    // Width of the room image represents 500cm-wide wall
+    const scale = parseInt(this.room?.nativeElement.offsetWidth) / 500;
+    this.rawSettings.scale = scale;
+    this.settingsService.setSettings(this.rawSettings);
+  }
+
+  convertSettings(){
+    console.log(this.convertedSettings)
+
+    this.convertedSettings = {
+      framing: this.scaleValue(this.rawSettings.framing),
+      matting: this.scaleValue(this.rawSettings.matting),
+      width: this.scaleValue(this.rawSettings.width),
+      scale:1
+    }
+    console.log(this.convertedSettings)
+  }
+
+  scaleValue(n: number){
+    return n * this.rawSettings.scale;
   }
 
 }

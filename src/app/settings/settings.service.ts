@@ -9,7 +9,7 @@ export class SettingsService {
   settings: Settings = {
     framing: 5,
     matting: 1,
-    width: 200,
+    width: 80,
     scale: 200,
   }
   settingsChanged = new BehaviorSubject<Settings>(this.settings);
@@ -20,5 +20,7 @@ export class SettingsService {
 
 
   setSettings(settings: Settings) {
+    this.settings = settings;
+    this.settingsChanged.next(settings);
   }
 }

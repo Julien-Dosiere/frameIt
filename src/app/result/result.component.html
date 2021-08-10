@@ -1,19 +1,19 @@
 <div class="room"
-     style="background-image: url(assets/img/500-scaled.png)" (click)="onResize($event)" #room>
+     style="background-image: url(assets/img/500-scaled.png)" (window:resize)="setScale()" #room>
   <div class="nail">
     <div
       class="frame"
       style="
      border-color: {{color}};
-     border-width: {{rawSettings.framing}}px;
+     border-width: {{convertedSettings.framing}}px;
 
 
 
 "
     >
-          <div class="matting" style="border-width: {{rawSettings.matting}}px;">
+          <div class="matting" style="border-width: {{convertedSettings.matting}}px;">
 
-        <img [src]=imageSource class="picture" style="width: {{rawSettings.width}}px;">
+        <img [src]=imageSource class="picture" style="width: {{convertedSettings.width}}px;">
     </div>
 
       </div>
