@@ -19,7 +19,9 @@ export class ResultComponent implements OnInit, OnDestroy {
   convertedSettings!: Settings;
   roomView = true;
   scale!: number;
-  @ViewChild('view', { static: true}) view?: ElementRef;
+  @ViewChild('view', { static: true}) view!: ElementRef;
+  @ViewChild('frame', { static: true}) frame!: ElementRef;
+
 
   constructor(
     private imageService: ImageService,
@@ -51,26 +53,30 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   setScale() {
     // Width of the room image represents 500cm-wide wall
-    let containerRealSize: number;
     if (this.roomView)
-      containerRealSize = 500;
-    else
-      containerRealSize = this.rawSettings.width;
+      this.scale = parseInt(this.view.nativeElement.offsetWidth) / 500;
+    else {
+      this.scale = parseInt(this.frame.nativeElement.offsetWidth) / this.dimensions.totalWidth;
+      console.log(this.frame.nativeElement)
+      console.log(this.frame.nativeElement.offsetWidth)
 
-    this.scale = parseInt(this.view!.nativeElement.offsetWidth) / containerRealSize;
+    }
+
     this.convertSettings()
 
-      //this.rawSettings.scale = scale;
-    //this.settingsService.setSettings(this.rawSettings);
   }
 
   convertSettings(){
+    console.log(this.rawSettings);
+    console.log(this.scale);
 
     this.convertedSettings = {
       framing: this.scaleValue(this.rawSettings.framing),
       matting: this.scaleValue(this.rawSettings.matting),
       width: this.scaleValue(this.rawSettings.width),
     }
+    console.log(this.convertedSettings);
+
   }
 
   scaleValue(n: number){
@@ -79,6 +85,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   setRoomView() {
     this.roomView = true;
+    this.setScale();
   }
 
   setCloseUp() {

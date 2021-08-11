@@ -13,7 +13,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   imageSub?: Subscription;
   settingsSub?: Subscription;
   heightRatio: number = 1;
-  imageHeight?: number;
+  dimensions = {imageHeight: 0, totalWidth: 0, totalHeight: 0};
 
 
   constructor(
@@ -26,7 +26,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => {
       this.settings = settings;
-      this.setImageHeight();
+      this.setDimensions();
     });
     this.imageSub = this.imageService.imageChanged.subscribe(imageUrl => this.getImageSize(imageUrl));
 
@@ -67,14 +67,15 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
     img.onload = () => {
       this.heightRatio = img.height / img.width;
-      this.setImageHeight();
+      this.setDimensions();
     };
     img.src = imageUrl;
   }
 
-  setImageHeight() {
-    this.imageHeight = Math.round(this.settings.width * this.heightRatio);
-
+  setDimensions() {
+    this.dimensions.imageHeight = Math.round(this.settings.width * this.heightRatio);
+    this.dimensions.totalHeight = this.dimensions.imageHeight + (this.settings.matting + this.settings.framing) * 2;
+    this.dimensions.totalWidth = this.settings.width + (this.settings.matting + this.settings.framing) * 2;
   }
 
 }

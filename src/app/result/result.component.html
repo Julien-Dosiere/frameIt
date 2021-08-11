@@ -9,6 +9,7 @@
     class="room"
     style="background-image: url(assets/img/500-scaled.png);"
     *ngIf="roomView"
+    [ngStyle]="roomView ? null : {'display': 'none'}"
   >
 
     <div
@@ -31,21 +32,22 @@
                 }"
         >
 
-          <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.width}">
+          <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.width}" >
         </div>
 
       </div>
     </div>
   </div>
-  <ng-template [ngIf]="!roomView">
+  <div       [ngStyle]="!roomView ? null : {'display': 'none'}">
+
     <div
       class="frame"
       [ngStyle]="{
           'border-color': color,
           'border-width.px': convertedSettings.framing,
           'display': 'inline-block'
-
         }"
+      #frame
     >
       <div
         class="matting"
@@ -58,6 +60,8 @@
       </div>
 
     </div>
-  </ng-template>
+  </div>
+
+
 </div>
 

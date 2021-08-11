@@ -3,7 +3,7 @@
 </h5>
 <label for="width">
 <input type="number" id="width" value="{{settings.width}}" (change)="setWidth($event)">
-  cm X {{imageHeight}} cm
+  cm X {{dimensions.imageHeight}} cm
 </label>
 <h5 class="title">
   Frame width:
@@ -34,3 +34,7 @@
   </button>
 
 </div>
+
+<h5 class="title">
+  Composition total dimensions: {{dimensions.totalWidth}} X {{dimensions.totalHeight}} cm
+</h5>
