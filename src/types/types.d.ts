@@ -12,7 +12,6 @@ interface Settings{
   framing: number;
   matting: number;
   width: number;
-  scale: number;
 }
 
 // interface CustomPalette {

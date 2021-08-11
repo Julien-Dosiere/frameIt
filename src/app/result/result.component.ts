@@ -10,22 +10,25 @@ import { SettingsService } from '../settings/settings.service';
   styleUrls: ['./result.component.scss']
 })
 export class ResultComponent implements OnInit, OnDestroy {
-  imageSource: string = '/assets/img/img1.jpeg';
+  imageSource: string;
   color: string = '#111';
   imgChangeSub?: Subscription;
   paletteSub?: Subscription;
   settingsSub?: Subscription;
   rawSettings: Settings;
   convertedSettings!: Settings;
-  @ViewChild('room', { static: true}) room?: ElementRef;
+  roomView = true;
+  scale!: number;
+  @ViewChild('view', { static: true}) view?: ElementRef;
 
   constructor(
     private imageService: ImageService,
     private paletteService:PaletteService,
     private settingsService:SettingsService,
     ) {
+
     this.rawSettings = settingsService.settingsChanged.getValue();
-    this.convertSettings();
+    this.imageSource = this.imageService.imageChanged.getValue();
   }
 
   ngOnInit(): void {
@@ -33,16 +36,12 @@ export class ResultComponent implements OnInit, OnDestroy {
     this.paletteSub = this.paletteService.colorChanged.subscribe(color => this.color = color);
     this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => {
       this.rawSettings = settings;
-      this.convertSettings();
-
+      this.setScale();
     });
 
-    this.setScale();
+
 
     this.paletteService.setPalette(this.imageSource);
-
-
-
   }
 
   ngOnDestroy() {
@@ -52,25 +51,38 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   setScale() {
     // Width of the room image represents 500cm-wide wall
-    const scale = parseInt(this.room?.nativeElement.offsetWidth) / 500;
-    this.rawSettings.scale = scale;
-    this.settingsService.setSettings(this.rawSettings);
+    let containerRealSize: number;
+    if (this.roomView)
+      containerRealSize = 500;
+    else
+      containerRealSize = this.rawSettings.width;
+
+    this.scale = parseInt(this.view!.nativeElement.offsetWidth) / containerRealSize;
+    this.convertSettings()
+
+      //this.rawSettings.scale = scale;
+    //this.settingsService.setSettings(this.rawSettings);
   }
 
   convertSettings(){
-    console.log(this.convertedSettings)
 
     this.convertedSettings = {
       framing: this.scaleValue(this.rawSettings.framing),
       matting: this.scaleValue(this.rawSettings.matting),
       width: this.scaleValue(this.rawSettings.width),
-      scale:1
     }
-    console.log(this.convertedSettings)
   }
 
   scaleValue(n: number){
-    return n * this.rawSettings.scale;
+    return n * this.scale;
+  }
+
+  setRoomView() {
+    this.roomView = true;
+  }
+
+  setCloseUp() {
+    this.roomView = false;
   }
 
 }

@@ -1,21 +1,63 @@
-<div class="room"
-     style="background-image: url(assets/img/500-scaled.png)" (window:resize)="setScale()" #room>
-  <div class="nail">
+<button class="button" (click)="setRoomView()">
+  Room View
+</button>
+<button class="button" (click)="setCloseUp()">
+  Close-Up
+</button>
+<div class="" (window:resize)="setScale()" #view>
+  <div
+    class="room"
+    style="background-image: url(assets/img/500-scaled.png);"
+    *ngIf="roomView"
+  >
+
     <div
-      class="frame"
-      style="
-     border-color: {{color}};
-     border-width: {{convertedSettings.framing}}px;
-
-
-
-"
+      class="nail"
     >
-          <div class="matting" style="border-width: {{convertedSettings.matting}}px;">
+      <div
+        class="frame"
+        [ngStyle]="{
+          'border-color': color,
+          'border-width.px': convertedSettings.framing,
+          'position': 'relative',
+          'left.%': '-50'
 
-        <img [src]=imageSource class="picture" style="width: {{convertedSettings.width}}px;">
-    </div>
+        }"
+      >
+        <div
+          class="matting"
+          [ngStyle]="{
+                  'border-width.px': convertedSettings.matting
+                }"
+        >
+
+          <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.width}">
+        </div>
 
       </div>
     </div>
+  </div>
+  <ng-template [ngIf]="!roomView">
+    <div
+      class="frame"
+      [ngStyle]="{
+          'border-color': color,
+          'border-width.px': convertedSettings.framing,
+          'display': 'inline-block'
+
+        }"
+    >
+      <div
+        class="matting"
+        [ngStyle]="{
+                  'border-width.px': convertedSettings.matting
+                }"
+      >
+
+        <img [src]=imageSource class="picture" >
+      </div>
+
+    </div>
+  </ng-template>
 </div>
+

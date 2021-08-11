@@ -19,8 +19,6 @@ export class PaletteComponent implements OnInit {
   ngOnInit(): void {
     this.paletteChangeSub = this.paletteService.paletteChanged.subscribe(palette => {
       this.palette = palette
-      console.log(this.palette)
-
     });
   }
 

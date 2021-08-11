@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { SettingsService } from './settings.service';
 import {Subscription} from "rxjs";
+import {ImageService} from "../image.service";
 
 @Component({
   selector: 'app-settings',
@@ -9,17 +10,25 @@ import {Subscription} from "rxjs";
 })
 export class SettingsComponent implements OnInit, OnDestroy {
   settings: Settings;
-
+  imageSub?: Subscription;
   settingsSub?: Subscription;
+  heightRatio: number = 1;
+  imageHeight?: number;
 
 
-  constructor(private settingsService: SettingsService) {
+  constructor(
+    private settingsService: SettingsService,
+    private imageService: ImageService
+    ) {
     this.settings = settingsService.settingsChanged.getValue();
   }
 
   ngOnInit(): void {
-    this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => this.settings = settings);
-
+    this.settingsSub = this.settingsService.settingsChanged.subscribe(settings => {
+      this.settings = settings;
+      this.setImageHeight();
+    });
+    this.imageSub = this.imageService.imageChanged.subscribe(imageUrl => this.getImageSize(imageUrl));
 
   }
 
@@ -51,6 +60,21 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.settingsSub!.unsubscribe();
+  }
+
+  getImageSize(imageUrl: string) {
+    const img = new Image;
+
+    img.onload = () => {
+      this.heightRatio = img.height / img.width;
+      this.setImageHeight();
+    };
+    img.src = imageUrl;
+  }
+
+  setImageHeight() {
+    this.imageHeight = Math.round(this.settings.width * this.heightRatio);
+
   }
 
 }

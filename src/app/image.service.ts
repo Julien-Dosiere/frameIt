@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {Subject} from "rxjs";
+import {BehaviorSubject, Subject} from "rxjs";
 import { PaletteService } from './palette/palette.service';
 
 
@@ -14,12 +14,13 @@ import { PaletteService } from './palette/palette.service';
 })
 export class ImageService {
   imageFile?: File;
-  imageChanged = new Subject<string>();
+  imageChanged = new BehaviorSubject<string>('/assets/img/img1.jpeg');
 
 
 
 
-  constructor(private paletteService: PaletteService) { }
+  constructor(private paletteService: PaletteService) {
+  }
 
   setImage (file: File) {
     this.imageFile = file;
@@ -39,7 +40,11 @@ export class ImageService {
         if (typeof reader.result === 'string'){
           this.imageChanged.next(reader.result);
           this.paletteService.setPalette(reader.result);
+
+
+
         }
+ // is the data URL because called with readAsDataURL
 
       }
     }

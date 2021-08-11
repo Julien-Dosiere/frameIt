@@ -1,31 +1,4 @@
-.nail{
-  position: absolute;
-  left: 50%;
-  bottom: 50%;
-
-  //width: 10.04%;
-
-
-
-}
-
-.frame{
-  border: 3em solid;
-  //width: 30%;
-  position: relative;
-  left: -50%;
-  //padding: 40%
-
-
-
-
-
-}
-
-.matting{
-  border: 0px solid white;
-  background-color: white;
-
+.view{
 }
 
 .room {
@@ -43,9 +16,29 @@
 
 }
 
+.nail{
+  position: absolute;
+  left: 50%;
+  bottom: 50%;
+
+}
+
+.frame{
+  border: 3em solid;
+
+}
+
+.matting{
+  border: 0px solid white;
+  background-color: white;
+
+}
+
+
 .picture{
   display: block;
   //width: 100px;
   height: auto;
+  max-height: 60vh;
 
 }

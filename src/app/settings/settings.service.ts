@@ -10,7 +10,6 @@ export class SettingsService {
     framing: 5,
     matting: 1,
     width: 80,
-    scale: 200,
   }
   settingsChanged = new BehaviorSubject<Settings>(this.settings);
 
