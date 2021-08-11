@@ -51,7 +51,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   setWidth(event: Event): void {
     const input = (<HTMLInputElement>event.target).value;
-    this.settings.width = parseInt(input);
+    this.settings.imageWidth = parseInt(input);
     this.settingsService.setSettings(this.settings);
 
 
@@ -73,9 +73,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   setDimensions() {
-    this.dimensions.imageHeight = Math.round(this.settings.width * this.heightRatio);
+    this.dimensions.imageHeight = Math.round(this.settings.imageWidth * this.heightRatio);
+    this.settingsService.setImageHeight(this.dimensions.imageHeight);
+
     this.dimensions.totalHeight = this.dimensions.imageHeight + (this.settings.matting + this.settings.framing) * 2;
-    this.dimensions.totalWidth = this.settings.width + (this.settings.matting + this.settings.framing) * 2;
+    this.dimensions.totalWidth = this.settings.imageWidth + (this.settings.matting + this.settings.framing) * 2;
   }
 
 }

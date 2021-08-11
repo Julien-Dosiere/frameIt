@@ -4,25 +4,26 @@
 <button class="button" (click)="setCloseUp()">
   Close-Up
 </button>
-<div class="" (window:resize)="setScale()" #view>
+<div class="view" (window:resize)="setScale()" #view>
   <div
     class="room"
-    style="background-image: url(assets/img/500-scaled.png);"
-    *ngIf="roomView"
-    [ngStyle]="roomView ? null : {'display': 'none'}"
+    [ngStyle]="roomView ? {'background-image': 'url(assets/img/500-scaled.png'} : {'background-image': 'url(assets/img/250-scaled.png'}"
   >
+    <!--
+        [ngStyle]="roomView ? null : {'display': 'none'}"
+    -->
+
 
     <div
       class="nail"
+      [ngStyle]="{'top.px': nailHeight}"
+
     >
       <div
         class="frame"
         [ngStyle]="{
           'border-color': color,
-          'border-width.px': convertedSettings.framing,
-          'position': 'relative',
-          'left.%': '-50'
-
+          'border-width.px': convertedSettings.framing
         }"
       >
         <div
@@ -32,36 +33,36 @@
                 }"
         >
 
-          <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.width}" >
+          <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.imageWidth}">
         </div>
 
       </div>
     </div>
   </div>
-  <div       [ngStyle]="!roomView ? null : {'display': 'none'}">
+<!--  <ng-template-->
+<!--    [ngIf]="!roomView" #frame-->
+<!--  >-->
 
-    <div
-      class="frame"
-      [ngStyle]="{
-          'border-color': color,
-          'border-width.px': convertedSettings.framing,
-          'display': 'inline-block'
-        }"
-      #frame
-    >
-      <div
-        class="matting"
-        [ngStyle]="{
-                  'border-width.px': convertedSettings.matting
-                }"
-      >
+<!--    <div-->
+<!--      class="frame"-->
+<!--      [ngStyle]="{-->
+<!--          'border-color': color,-->
+<!--          'border-width.px': convertedSettings.framing,-->
+<!--          'display': 'inline-block'-->
+<!--        }"-->
+<!--    >-->
+<!--      <div-->
+<!--        class="matting"-->
+<!--        [ngStyle]="{-->
+<!--                  'border-width.px': convertedSettings.matting-->
+<!--                }"-->
+<!--      >-->
 
-        <img [src]=imageSource class="picture" >
-      </div>
+<!--        <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.imageWidth}">-->
+<!--      </div>-->
 
-    </div>
-  </div>
-
+<!--    </div>-->
+<!--  </ng-template>-->
 
 </div>
 

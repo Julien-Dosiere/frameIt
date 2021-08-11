@@ -19,12 +19,16 @@
 .nail{
   position: absolute;
   left: 50%;
-  bottom: 50%;
 
 }
 
 .frame{
   border: 3em solid;
+  position: relative;
+  left: -50%;
+
+
+
 
 }
 
@@ -39,6 +43,7 @@
   display: block;
   //width: 100px;
   height: auto;
-  max-height: 60vh;
+  object-fit: cover;
+  //max-height: 60vh;
 
 }

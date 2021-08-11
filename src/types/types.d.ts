@@ -11,7 +11,16 @@ type Color = [number, number, number]
 interface Settings{
   framing: number;
   matting: number;
-  width: number;
+  imageWidth: number;
+
+
+}
+
+interface Dimensions{
+  imageHeight: number;
+  totalWidth: number;
+  totalHeight: number;
+
 }
 
 // interface CustomPalette {
