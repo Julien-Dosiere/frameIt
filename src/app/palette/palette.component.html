@@ -1,47 +1,80 @@
-<div *ngIf="palette">
-  <div
-    class="color"
-    style="background-color: {{palette.vibrant}};"
-    (click)="selectColor(palette.vibrant)"
-  >
+<h5 class="title is-5">2. Choose your Frame Color:</h5>
+
+<div class="columns" *ngIf="RGBPalette">
+
+
+  <div class="column  is-8">
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <h6 class="title is-6">Pick a recommended color...</h6>
+      </div>
+    </nav>
+    <div class="columns is-variable is-6">
+      <div class="column">
+
+        <app-color
+          [RGB]="RGBPalette.vibrant"
+          [name]="namesPalette.vibrant"
+          (click)="selectColor(RGBPalette.vibrant)"
+        >
+        </app-color>
+      </div>
+      <div class="column">
+
+        <app-color
+          [RGB]="RGBPalette.muted"
+          [name]="namesPalette.muted"
+          (click)="selectColor(RGBPalette.muted)"
+        >
+        </app-color>
+
+      </div>
+      <div class="column">
+        <app-color
+          [RGB]="RGBPalette.dark"
+          [name]="namesPalette.dark"
+          (click)="selectColor(RGBPalette.dark)"
+        >
+        </app-color>
+      </div>
+      <div class="column">
+        <app-color
+          [RGB]="RGBPalette.black"
+          [name]="namesPalette.black"
+          (click)="selectColor(RGBPalette.black)"
+        >
+        </app-color>
+      </div>
+    </div>
   </div>
 
 
-  <div
-    class="color"
-    style="background-color: {{palette.dark}};"
-    (click)="selectColor(palette.dark)"
-  >
-
-  </div>
-  <div
-    class="color"
-    style="background-color: {{palette.light}};"
-    (click)="selectColor(palette.light)"
-  >
-  </div>
-
-  <div
-    class="color"
-    style="background-color: {{palette.black}};"
-    (click)="selectColor(palette.black)"
-  >
+  <div class="column ">
+    <nav class="level">
+      <div class="level-item has-text-centered">
+        <h6 class="title is-6">... or make your own:</h6>
+      </div>
+    </nav>
 
 
-  </div>
-
-  <div
-    class="color"
-    style="background-color: {{palette.custom}};"
-    (click)="selectColor(palette.custom)"
-  >
-    <input type="color" id="head" name="head"
-           style=""
-           value="{{palette.custom}}"
-           (change)="pickColor($event)"
-
+    <div class="columns is-variable is-0 custom-color"
+         (click)="selectColor(RGBPalette.custom)"
     >
+      <div class="column has-text-centered">
+        <input
+          type="color"
+          value="{{RGBPalette.custom}}"
+          (change)="pickColor($event)"
+        >
+      </div>
+      <div class="column ">
+
+        {{namesPalette.custom}}
+      </div>
+    </div>
 
   </div>
+
+
 </div>
 

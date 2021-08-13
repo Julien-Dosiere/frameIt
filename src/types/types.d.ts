@@ -1,4 +1,6 @@
 declare module 'node-vibrant/dist/vibrant.js';
+declare module 'color-namer';
+
 
 // interface Color {
 //   r:number;

@@ -1,4 +1,9 @@
+@import "src/assets/style/global";
+
+
 .view{
+
+  margin-bottom: .5em;
 }
 
 .room {
@@ -45,5 +50,18 @@
   height: auto;
   object-fit: cover;
   //max-height: 60vh;
+
+}
+
+.tabs {
+  margin-bottom: 2em;
+
+}
+
+.is-active {
+  & a{
+    background-color: $custom !important;
+
+  }
 
 }

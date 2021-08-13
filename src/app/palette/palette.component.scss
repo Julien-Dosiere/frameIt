@@ -1,16 +1,25 @@
-.color {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-  border: 3px solid #999;
-  transition: 0.3s;
+@import "src/assets/style/global";
 
 
 
-  &:hover {
-    border-color: #ff7722
-  }
 
+h6 {
+  font-family: $title-font;
+  font-size: 1.2rem !important;
+  font-weight: 400;
 }
 
+.custom-color {
+  margin-left: 5em;
+  cursor: pointer;
+  // border-left: 1px solid #000;
 
+  &:hover {
+    color: #ff7722;
+  }
+}
+
+.columns {
+  margin-bottom: 2em;
+
+}

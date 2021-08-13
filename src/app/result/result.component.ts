@@ -104,9 +104,7 @@ export class ResultComponent implements OnInit, OnDestroy {
     else
       heightRatio = 0.5;
     this.nailHeight = (this.view.nativeElement.offsetHeight - compositionHeight) * heightRatio;
-    console.log(this.view.nativeElement.offsetHeight)
-    console.log(this.convertedImageHeight)
-    console.log(this.nailHeight*2)
+
   }
 
 }

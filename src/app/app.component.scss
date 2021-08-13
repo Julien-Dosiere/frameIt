@@ -1,3 +1,23 @@
+@import "~bulma";
+@import "src/assets/style/global";
 
+.top-bar{
+  background-color: $custom;
+  border-radius: .5em;
+
+  .title {
+    color: white;
+    font-family: $title-font;
+    font-weight: bold;
+    font-size: 2.2rem !important;
+
+  }
+
+}
+
+.level {
+  padding: 1em;
+
+}
 
 

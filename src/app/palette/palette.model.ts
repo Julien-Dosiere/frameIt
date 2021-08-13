@@ -1,11 +1,16 @@
 export class Palette {
-  black = '#111';
-  custom = '#fff';
+  custom: string ;
+  black: string;
   constructor(
     public vibrant: string,
     public dark: string,
-    public light: string,
+    public muted: string,
+    black? :string,
+    custom? :string
+
   ){
+    this.black = black ?? '#111';
+    this.custom = custom ?? '#ffffff';
 
   }
 }

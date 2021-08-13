@@ -1,9 +1,11 @@
-<button class="button" (click)="setRoomView()">
-  Room View
-</button>
-<button class="button" (click)="setCloseUp()">
-  Close-Up
-</button>
+<!--<div class="columns">-->
+<!--  <div class="column is-3">-->
+<!--    <h5 class="title is-5">-->
+<!--      2. Choose your View:-->
+<!--    </h5>-->
+<!--  </div>-->
+<!--</div>-->
+
 <div class="view" (window:resize)="setScale()" #view>
   <div
     class="room"
@@ -39,30 +41,33 @@
       </div>
     </div>
   </div>
-<!--  <ng-template-->
-<!--    [ngIf]="!roomView" #frame-->
-<!--  >-->
 
-<!--    <div-->
-<!--      class="frame"-->
-<!--      [ngStyle]="{-->
-<!--          'border-color': color,-->
-<!--          'border-width.px': convertedSettings.framing,-->
-<!--          'display': 'inline-block'-->
-<!--        }"-->
-<!--    >-->
-<!--      <div-->
-<!--        class="matting"-->
-<!--        [ngStyle]="{-->
-<!--                  'border-width.px': convertedSettings.matting-->
-<!--                }"-->
-<!--      >-->
 
-<!--        <img [src]=imageSource class="picture" [ngStyle]="{'width.px': convertedSettings.imageWidth}">-->
-<!--      </div>-->
 
-<!--    </div>-->
-<!--  </ng-template>-->
+</div>
+<div class="tabs is-fullwidth is-toggle is-toggle-rounded">
+
+  <ul>
+
+    <li [ngClass]="roomView ? 'is-active' : 'null'">
+      <a
+        class="is-fullwidth is-rounded"
+        (click)="setRoomView()"
+      >
+        Room View
+      </a>
+    </li>
+
+    <li [ngClass]="!roomView ? 'is-active' : 'null'">
+      <a
+        class="is-fullwidth is-rounded"
+        (click)="setCloseUp()"
+      >
+        Close-Up
+      </a>
+    </li>
+  </ul>
+
 
 </div>
 

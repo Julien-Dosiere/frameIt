@@ -1,0 +1,23 @@
+@import "~bulma";
+@import "src/assets/style/global";
+
+
+
+.total {
+  background-color: $success;
+  border-radius: 1em;
+  margin-bottom: 2em;
+
+
+
+
+  & .title {
+    color: white;
+    padding: .6em;
+    font-family: $title-font;
+    font-weight: 400;
+    font-size: 2rem;
+
+
+  }
+}

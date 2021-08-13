@@ -22,9 +22,9 @@ export class PaletteService {
   setPalette(url: string) {
     Vibrant.from(url).getPalette().then((extractedPalette: ExtractedPalette) => {
       this.palette = new Palette(
-        this.colorConverter(extractedPalette.Vibrant?.rgb!),
-        this.colorConverter(extractedPalette.DarkVibrant?.rgb!),
-          this.colorConverter(extractedPalette.LightVibrant?.rgb!)
+        this.colorConverter(extractedPalette.Vibrant!.rgb),
+        this.colorConverter(extractedPalette.DarkVibrant!.rgb),
+        this.colorConverter(extractedPalette.Muted!.rgb),
       );
       this.paletteChanged.next(this.palette);
       this.colorChanged.next(this.palette.vibrant);

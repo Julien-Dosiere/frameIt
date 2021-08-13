@@ -1,40 +1,84 @@
-<h5 class="title">
-  Width:
-</h5>
-<label for="width">
-<input type="number" id="width" value="{{settings.imageWidth}}" (change)="setWidth($event)">
-  cm X {{dimensions.imageHeight}} cm
-</label>
-<h5 class="title">
-  Frame width:
-</h5>
-<div>
-  <button class="button" (click)="setFraming('-')">
-    -
-  </button>
-  {{settings.framing}} cm
+<h5 class="title is-5">3. Set your dimensions:</h5>
 
-  <button class="button" (click)="setFraming('+')">
-    +
-  </button>
+<div class="columns is-variable is-7">
+  <div class="column ">
+    <div class="columns is-gapless">
+      <div class="column">
+        <h6 class="title is-6 has-text-centered">
+          Frame width:
+        </h6>
+      </div>
+      <div class="column">
 
+        <div>
+          <button class="button" (click)="setFraming('-')">
+            -
+          </button>
+          {{settings.framing}} cm
+
+          <button class="button" (click)="setFraming('+')">
+            +
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column ">
+    <div class="columns is-gapless">
+      <div class="column">
+        <h6 class="title is-6 has-text-centered">
+          Matting:
+        </h6>
+      </div>
+      <div class="column">
+
+        <div>
+          <button class="button" (click)="setMatting('-')">
+            -
+          </button>
+          {{settings.matting}} cm
+
+          <button class="button" (click)="setMatting('+')">
+            +
+          </button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column ">
+    <div class="columns is-gapless">
+      <div class="column is-4">
+        <h6 class="title is-6 has-text-centered">
+          Width:
+        </h6>
+      </div>
+      <div class="column is-8">
+        <div class="columns">
+          <div class="column">
+
+            <input type="number" id="width" value="{{settings.imageWidth}}" (change)="setWidth($event)" class="input">
+          </div>
+          <div class="column">
+          <label for="width">
+            cm X {{dimensions.imageHeight}} cm
+          </label>
+            </div>
+        </div>
+      </div>
+
+
+      </div>
+  </div>
 </div>
 
-<h5 class="title">
-  Matting:
-</h5>
-<div>
-  <button class="button" (click)="setMatting('-')">
-    -
-  </button>
-  {{settings.matting}} cm
 
-  <button class="button" (click)="setMatting('+')">
-    +
-  </button>
+<nav class="level ">
+  <div class="level-item has-text-centered total">
+    <h4 class="title is-4 ">
+      Composition total dimensions: {{dimensions.totalWidth}} X {{dimensions.totalHeight}} cm
+    </h4>
+  </div>
+</nav>
 
-</div>
-
-<h5 class="title">
-  Composition total dimensions: {{dimensions.totalWidth}} X {{dimensions.totalHeight}} cm
-</h5>
